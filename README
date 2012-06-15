@@ -9,4 +9,4 @@ php /PATH/TO/ANALYZER/bin/analyze.php example/unusednamespace.php
 
 or
 
-find . -name "*.php" | xargs -n 1 php /PATH/TO/NCU/bin/analyze.php $a
+find . -name "*.php" | xargs -n 1 php /PATH/TO/ANALYZER/bin/analyze.php $a
