@@ -16,18 +16,17 @@ class AnalyzeCommand extends Command
             ->setName('analyze')
             ->setDescription('This tool will check if all used (T_USE) namespaces are needed in a given PHP file.')
             ->addArgument('file', InputArgument::REQUIRED, 'File to analyze')
+			->addOption('checkDocBlock', null, InputOption::VALUE_NONE, 'If set, docblocks will checked too. Defaults to true')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-		echo $input->getArgument('file');
-		
-        $analyzer = new NamespaceAnalyzer(token_get_all(file_get_contents($input->getArgument('file'))), true);
+		$filename = $input->getArgument('file');
+	    $analyzer = new NamespaceAnalyzer(token_get_all(file_get_contents($filename)), 
+										$input->getOption('checkDocBlock'));
 
 		$unusedNamespaces = $analyzer->getUnusedNamespaces();
-		
-		var_dump($unusedNamespaces);
 
 		foreach ($unusedNamespaces as $namespace) {
 		    $output->writeln($filename . ": Namespace '" . $namespace . "' is not used.");
