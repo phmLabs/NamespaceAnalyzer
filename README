@@ -5,5 +5,8 @@ This tool will check if all used (T_USE) namespaces are needed in a given PHP fi
 
 Example:
 
-php /PATH/TO/NCU/bin/analyze.php example/unusednamespace.php
+php /PATH/TO/ANALYZER/bin/analyze.php example/unusednamespace.php
+
+or
+
 find . -name "*.php" | xargs -n 1 php /PATH/TO/NCU/bin/analyze.php $a
