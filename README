@@ -1,0 +1,5 @@
+Namespace Analyzer
+==================
+
+php /PATH/TO/NCU/bin/analyze.php example/unusednamespace.php
+find . -name "*.php" | xargs -n 1 php /PATH/TO/NCU/bin/analyze.php $a

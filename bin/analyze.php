@@ -1,7 +1,5 @@
 <?php
 
-// find . -name "*.php" | xargs -n 1 php /PATH/TO/NCU/bin/ncu.php $a
-
 include_once __DIR__ . '/../Phm/Tools/NamespaceAnalyzer/NamespaceAnalyzer.php';
 
 $filename = $_SERVER["argv"][1];
