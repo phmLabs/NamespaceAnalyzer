@@ -1,7 +1,7 @@
 Namespace Analyzer
 ==================
 
-[![Build Status](https://secure.travis-ci.org/phmlabs/NamespaceAnalyzer.png)](http://travis-ci.org/phmlabs/NamespaceAnalyzer)
+[![Build Status](https://secure.travis-ci.org/phmLabs/NamespaceAnalyzer.png)](http://travis-ci.org/phmLabs/NamespaceAnalyzer)
 
 This tool will check if all used (*T_USE*) namespaces are needed in a given PHP file.
 
