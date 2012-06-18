@@ -1,19 +1,7 @@
 #!/usr/bin/env php
-# app/console
 <?php
 
-require_once __DIR__.'/../vendor/Symfony/Component/ClassLoader/UniversalClassLoader.php';
-
-use Symfony\Component\ClassLoader\UniversalClassLoader;
-
-$loader = new UniversalClassLoader();
-
-$loader->registerNamespaces(array(
-    'Phm' => __DIR__.'/../',
-    'Symfony' => __DIR__.'/../vendor',
-));
-
-$loader->register();
+require __DIR__.'/../src/bootstrap.php';
 
 use Phm\Command\AnalyzeCommand;
 use Symfony\Component\Console\Application;

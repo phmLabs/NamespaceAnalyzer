@@ -18,15 +18,15 @@ class MyTest extends ExtendedClass
      */
     public function doTest (TypeHintClass $typeHintedClass, $secondArgument)
     {
-     	StaticClassWithDoubleQuotes::TEST = "test1";
-     	StaticClassWithSingleQuotes::TEST = 'test2';
+        StaticClassWithDoubleQuotes::TEST = "test1";
+        StaticClassWithSingleQuotes::TEST = 'test2';
 
-     	$test instanceof InstanceOfClass;
+        $test instanceof InstanceOfClass;
 
-     	$newtest = new SecondTest;
+        $newtest = new SecondTest;
 
-     	$newnewTest = new Test\MyTest;
-     	$newnewTest = new Test\ThirdTest;
+        $newnewTest = new Test\MyTest;
+        $newnewTest = new Test\ThirdTest;
 
         try {
             new NamesspacedNewClass();
