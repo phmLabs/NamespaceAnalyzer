@@ -8,7 +8,7 @@ This tool will check if all used (*T_USE*) namespaces are needed in a given PHP 
 Installation
 ------------
 
-Require with `Composer`(http://getcomposer.org)
+Require with [`Composer`](http://getcomposer.org)
 
 ``` json
     {
