@@ -1,0 +1,35 @@
+{
+    "name": "phm/namespace-analyzer",
+    "description": "Php Namespace Analyzer",
+    "keywords": ["package", "analyzer"],
+    "homepage": "http://www.phmlabs.com",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nils Langner",
+            "email": "phphatesme@plan08.de",
+            "homepage": "http://www.phmlabs.com"
+        },
+        {
+            "name": "Contributors",
+            "email": "git@github.com",
+            "homepage": "https://github.com/phmLabs/NamespaceAnalyzer/graphs/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/console": "2.1.*",
+        "symfony/class-loader": "2.1.*",
+        "symfony/finder": "2.1.*"
+    },
+    "require-dev": {
+        "symfony/process": "2.1.*"
+    },
+
+    "autoload": {
+        "psr-0": { "Phm": "src/" }
+    },
+
+    "bin": ["bin/analyze"]
+}
