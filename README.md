@@ -1,5 +1,7 @@
-Namespace Analyzer (https://secure.travis-ci.org/phmlabs/NamespaceAnalyzer.png)
+Namespace Analyzer
 ==================
+
+<img src="https://secure.travis-ci.org/phmlabs/NamespaceAnalyzer.png" />
 
 This tool will check if all used (*T_USE*) namespaces are needed in a given PHP file.
 
