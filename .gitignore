@@ -2,3 +2,7 @@ vendor/*
 composer.lock
 composer.phar
 namespace-analyzer.phar
+.buildpath
+.project
+.settings/
+
