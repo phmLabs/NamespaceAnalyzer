@@ -1,6 +1,5 @@
 <?php
 namespace Phm\Command;
-
 use Phm\Tools\NamespaceAnalyzer\Report\Writer\FileWriter;
 use Phm\Tools\NamespaceAnalyzer\Report\Format\XUnitFormat;
 use Phm\Tools\NamespaceAnalyzer\Report\Format\SimpleTextFormat;
@@ -57,7 +56,14 @@ class AnalyzeCommand extends Command
                     $input->getOption('checkDocBlock'));
             $unusedNamespaces[$filename] = $analyzer->getUnusedNamespaces();
         }
+        $this->createReport($input, $output, $unusedNamespaces);
 
+        return 0;
+    }
+
+    private function createReport (InputInterface $input,
+            OutputInterface $output, $unusedNamespaces)
+    {
         $outputFormat = $input->getOption("format");
 
         switch ($outputFormat) {
@@ -66,18 +72,18 @@ class AnalyzeCommand extends Command
                 if (is_null($input->getOption("outputfile"))) {
                     $output->write(
                             "<error>When chosing XUnit as output format you have to set an outputfile.</error>\n");
-                    die();
+                    die(1);
                 }
                 $writer = new FileWriter($input->getOption("outputfile"));
                 break;
             case "standard":
                 $format = new SimpleTextFormat();
-                $writer = new StdOutWriter();
+                $writer = new StdOutWriter($output);
                 break;
             default:
                 $output->write(
                         "<error>Unknown format '" . $outputFormat . "'</error>\n");
-                die();
+                die(1);
         }
 
         $writer->write($format->getFormattedReport($unusedNamespaces));

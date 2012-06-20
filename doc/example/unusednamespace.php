@@ -1,11 +1,17 @@
 <?php
 
-use Test\Test;
-use Test2\Test2 as SecondTest;
+// used namespaces
+use Phm\Test\ExtendedClass;
+use Phm\Test\StaticClassWithDoubleQuotes;
+use Phm\Test\StaticClassWithSingleQuotes;
+use Phm\Test\InstanceOfClass;
+use Phm\Test\NewClass;
+use Phm\Test;
+use Phm\TestAlias as AliasNamespace;
 
-use Test\ExtendedClass;
-
-use Test\SecondArgumentClass;
+// unused namespaces
+use Test\UnusedNamespaceClass;
+use Testt;
 
 class MyTest extends ExtendedClass
 {
@@ -23,10 +29,10 @@ class MyTest extends ExtendedClass
 
         $test instanceof InstanceOfClass;
 
-        $newtest = new SecondTest;
+        $newTest = new NewClass;
 
-        $newnewTest = new Test\MyTest;
-        $newnewTest = new Test\ThirdTest;
+        new AliasNamespace;
+        new Test\NewClass;
 
         try {
             new NamesspacedNewClass();
