@@ -122,7 +122,7 @@ class NamespaceAnalyzer
             return true;
         }
 
-        if ((!array_key_exists($stackPtr,$this->nameSpaceTokenNumber)) &&
+        if ((!array_key_exists($stackPtr, $this->nameSpaceTokenNumber)) &&
             (array_key_exists($this->tokens[$stackPtr][1], $currentNamespaces)))
         {
             return true;
