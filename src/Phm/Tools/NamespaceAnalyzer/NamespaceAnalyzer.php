@@ -41,6 +41,8 @@ class NamespaceAnalyzer
      */
     private $isCheckDocBlocked;
 
+    private $nameSpaceTokenNumber = array();
+
     /**
      * @param array $tokens array of tokens that are processed
      * @param boolean $checkDocBlock if the parameter is false doc blocks are not processed.
@@ -119,8 +121,10 @@ class NamespaceAnalyzer
         if ($this->tokens[$stackPtr - 2][0] == T_INSTANCEOF) {
             return true;
         }
-        // is a Token has the same Name of a Namespace -> Namespace == used
-        if (array_key_exists($this->tokens[$stackPtr][1], $currentNamespaces)) {
+
+        if ((!array_key_exists($stackPtr,$this->nameSpaceTokenNumber)) &&
+            (array_key_exists($this->tokens[$stackPtr][1], $currentNamespaces)))
+        {
             return true;
         }
 
@@ -156,7 +160,7 @@ class NamespaceAnalyzer
             $lastNamespacePart = $this->tokens[$ptr][1];
             $ptr ++;
         }
-
+        $this->nameSpaceTokenNumber[$ptr -1] = true;
         return $lastNamespacePart;
     }
 
