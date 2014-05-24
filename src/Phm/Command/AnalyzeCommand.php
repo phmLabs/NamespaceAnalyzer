@@ -47,8 +47,7 @@ class AnalyzeCommand extends Command
                 $analyzer = new NamespaceAnalyzer(
                         token_get_all(file_get_contents($filename)),
                         $input->getOption('checkDocBlock'));
-
-                $unusedNamespaces[$file->getFilename()] = $analyzer->getUnusedNamespaces();
+                $unusedNamespaces[$file->getRealpath()] = $analyzer->getUnusedNamespaces();
             }
         } else {
             $analyzer = new NamespaceAnalyzer(

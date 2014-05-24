@@ -41,6 +41,8 @@ class NamespaceAnalyzer
      */
     private $isCheckDocBlocked;
 
+    private $nameSpaceTokenNumber = array();
+
     /**
      * @param array $tokens array of tokens that are processed
      * @param boolean $checkDocBlock if the parameter is false doc blocks are not processed.
@@ -64,7 +66,7 @@ class NamespaceAnalyzer
                 if ($token[0] == T_USE && $this->tokens[$stackPtr - 2] != ")") {
                     $useNamespaces[$this->getNamespace($stackPtr)] = false;
                 } elseif ($token[0] == T_STRING) {
-                    if ($this->isNamespaced($stackPtr)) {
+                    if ($this->isNamespaced($stackPtr, $useNamespaces)) {
                         $namespace = $this->tokens[$stackPtr][1];
                         if (array_key_exists($namespace, $useNamespaces)) {
                             $useNamespaces[$namespace] = true;
@@ -95,10 +97,11 @@ class NamespaceAnalyzer
      * Checks if a given token is a namespace
      *
      * @param int $stackPtr integer that is pointing to the analyzed token in token array
+     * @param array $useNamespaces array of the available Namespaces in a file
      *
      * @return boolean returns true if the given element is a namespace
      */
-    private function isNamespaced ($stackPtr)
+    private function isNamespaced ($stackPtr, $currentNamespaces = array())
     {
         if ($this->tokens[$stackPtr - 2][0] == T_NEW) {
             return true;
@@ -118,6 +121,13 @@ class NamespaceAnalyzer
         if ($this->tokens[$stackPtr - 2][0] == T_INSTANCEOF) {
             return true;
         }
+
+        if ((!array_key_exists($stackPtr, $this->nameSpaceTokenNumber)) &&
+            (array_key_exists($this->tokens[$stackPtr][1], $currentNamespaces)))
+        {
+            return true;
+        }
+
         return false;
     }
 
@@ -130,7 +140,7 @@ class NamespaceAnalyzer
      */
     private function getTypeHintDocComments ($comment)
     {
-        $regEx = "^@(param|return|var|throws)\s+(\S+)\s^";
+        $regEx = "^@(param|return|var|throws|see)\s+(\S+)\s^";
         preg_match_all($regEx, $comment, $matches);
 
         return $matches[2];
@@ -146,12 +156,11 @@ class NamespaceAnalyzer
     private function getNamespace ($stackPtr)
     {
         $ptr = $stackPtr + 2;
-        $namespace = "";
         while ($this->tokens[$ptr] != ";") {
             $lastNamespacePart = $this->tokens[$ptr][1];
             $ptr ++;
         }
-
+        $this->nameSpaceTokenNumber[$ptr -1] = true;
         return $lastNamespacePart;
     }
 
